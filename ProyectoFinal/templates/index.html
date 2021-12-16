@@ -1,0 +1,72 @@
+
+{%extends 'layout.html'%}
+
+{%block body%}
+
+<div class="row">
+    <div class="col md 20">
+        <div class="card card-body">
+            <form action="/add_info" method = "POST">
+                <input type="text" class="form-control" name="ID" placeholder="ID">
+                <input type="text" class="form-control" name="NombrePaciente" placeholder="Nombre Paciente">     
+                <input type="text" class="form-control" name="ApellidoPaciente" placeholder="Apellido Paciente"> 
+                <input type="text" class="form-control" name="Telefono" placeholder="Telefono"> 
+                <input type="text" class="form-control" name="Doctor" placeholder="Doctor">
+                <input type="text" class="form-control" name="Fecha" placeholder="Fecha"> 
+                <input type="text" class="form-control" name="Observaciones" placeholder="Observaciones"> 
+                <button type="submit">
+                    Save
+                </button>
+             </form>         
+        </div>
+    </div>
+
+
+    <div class="col md 7"></div>
+
+    <table>
+        <thead> 
+            <tr>
+                <td>ID</td>
+                <td>NombrePaciente</td>
+                <td>ApellidoPaciente</td>
+                <td>Telefono</td>
+                <td>Doctor</td>
+                <td>Fecha</td>
+                <td>Observaciones</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for infor in Info %}
+                <tr>
+                    <td>{{  infor.0}}</td> 
+                    <td>{{  infor.1}}</td>
+                    <td>{{  infor.2}}</td>
+                    <td>{{  infor.3}}</td>
+                    <td>{{  infor.4}}</td>
+                    <td>{{  infor.5}}</td>
+                    <td>{{  infor.6}}</td>
+                    <td>
+                        <a href="/edit/{{infor.0}}">Edit</a>
+                        <a href="/delete/{{infor.0}}">Delete</a>
+    
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+     </table>
+
+</div>
+
+{% with messages = get_flashed_messages() %}
+{% if messages%}
+{% for message in messages %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+{%endblock%}

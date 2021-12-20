@@ -26,7 +26,7 @@ def Insert():
             Answ1= "NO"
   
             
-def Delete(x3):
+def Delete(f3):
     basedatos.delete_one({'palabra': f3})
 
 def ShowData():
